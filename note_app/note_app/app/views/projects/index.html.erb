@@ -1,3 +1,21 @@
-Hi <%=@user.fname %>!
+<div>Hi <%=@user.fname %>!</div>
 
-<!-- <p><%= @current_user.id %></p>
+<h3>Active Projects</h3>
+
+<table>
+<% @user.projects.where(status: false).each do |proj| %>
+	<tr>
+	<td><%= proj.name %></td>
+	<td><%= link_to "View", project_path(proj.id) %>
+	</tr>
+<%end%>
+</table>
+
+
+<h3>Completed Projects</h3>
+<% @user.projects.where(status: true).each do |proj| %>
+	<p><%= proj.name %></p>
+	<p><%= link_to "View", project_path(proj.id) %>
+<%end%>
+
+<%= link_to "Create New Project", new_project_path %>

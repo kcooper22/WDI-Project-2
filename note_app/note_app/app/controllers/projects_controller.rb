@@ -6,33 +6,35 @@ class ProjectsController < ApplicationController
 		@user =  current_user
 	end
 
+	def show
+
+		@project = Project.find(params[:id])
+
+	end
+
 
 	def new
-
  		@project = Project.new
 	end
 
 	def create
-
     @project = Project.create(project_params)
-    binding.pry
+    # binding.pry
     @project.users << current_user
+    redirect_to '/'
+	end
 
- #  def add_user
-	#   user = current_user
-	#   project = Project.find(params[:id])
-	#   project.users << user
-	#   redirect_to product_path(product)
-	# end
-
+	def add_user
+		project = Project.find(params[:id])
+		newuser = User.where('user_name' = )
 
 	end
+
 
 	private
 
 	def project_params
     params.require(:project).permit(:name, :description, :status)
   end
-
 
 end

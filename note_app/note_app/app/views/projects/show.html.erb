@@ -1,0 +1,8 @@
+<p><%= @project.name%></p>
+
+<% @project.tasks.each do |task|%>
+	<p><%=task.name%></p>
+<%end%>
+
+
+<%= link_to "Add A New Task", new_project_task_path(@project.id) %>

@@ -1,0 +1,11 @@
+<h3>Create a New Task!</h3>
+
+<form action="/projects/<%=@project.id%>/tasks" method="post">
+	<label>Name</label>
+	<input type="text" name="task[name]"></br>
+	<label>Description</label>
+	<input type="text" name="task[description]" ></br>
+
+
+	<input type="submit" value="Submit">
+</form>
