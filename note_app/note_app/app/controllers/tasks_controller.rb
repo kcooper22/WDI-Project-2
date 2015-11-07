@@ -25,6 +25,49 @@ class TasksController < ApplicationController
 		end
 	end
 
+	def edit
+		@project = Project.find(params[:project_id])
+		@task = Task.find(params[:id])
+	end
+
+
+	def update
+
+		@task = Task.find(params[:id])
+    @task.update_attributes(task_params)
+    redirect_to project_path(@task.project_id)
+
+	end
+
+
+	def destroy
+		@task = Task.find(params[:id])
+		@task.destroy
+		redirect_to project_path(@task.project_id)
+	end
+	
+
+
+	def complete
+		task = Task.find(params[:id])
+
+
+    task.update_attribute(:status, true)
+    
+
+    redirect_to project_path(task.project_id)
+
+	end
+
+	def reverse_status
+		task = Task.find(params[:id])
+
+    task.update_attribute(:status, false)
+
+    redirect_to project_path(task.project_id)
+
+	end
+
 
 
 	private

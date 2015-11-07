@@ -5,17 +5,30 @@
 <table>
 <% @user.projects.where(status: false).each do |proj| %>
 	<tr>
-	<td><%= proj.name %></td>
-	<td><%= link_to "View", project_path(proj.id) %>
+		<td><%= proj.name %></td>
+		<td><%= link_to "View", project_path(proj.id) %></td>
+		<td><%= link_to "Did It", complete_project_path(proj), method: :put %></td>
+		
+		<!-- <td><form action="/projects/<%= proj.id %>/complete" method="post">
+			<input type="hidden" name="_method" value="put">
+			<input type="submit" value="DidIt"></td> -->
 	</tr>
 <%end%>
 </table>
 
 
 <h3>Completed Projects</h3>
+<table>
 <% @user.projects.where(status: true).each do |proj| %>
-	<p><%= proj.name %></p>
-	<p><%= link_to "View", project_path(proj.id) %>
+	<tr>
+	<td><%= proj.name %></td>
+	<td><%= link_to "View", project_path(proj.id) %></td>
+	<td><%= link_to "ReDo", reverse_status_project_path(proj), method: :put %></td>
+	<!-- <td><form action="/projects/<%= proj.id %>/complete" method="post">
+			<input type="hidden" name="_method" value="put">
+			<input type="submit" value="ReDo"></td> -->
+	</tr>
 <%end%>
+</table>
 
 <%= link_to "Create New Project", new_project_path %>

@@ -1,8 +1,42 @@
-<p><%= @project.name%></p>
+<h1><%= @project.name%></h1>
 
-<% @project.tasks.each do |task|%>
-	<p><%=task.name%></p>
-<%end%>
+<%= link_to "Edit Project", edit_project_path(@project.id) %>
 
 
 <%= link_to "Add A New Task", new_project_task_path(@project.id) %>
+
+
+
+
+<h3>Active Tasks</h3>
+
+<table>
+<% @project.tasks.where(status: false).each do |task|%>
+	<tr>
+		<td><%=task.name%></td>
+		<td><%= link_to "Edit", edit_project_task_path(@project,task) %></td>
+		<td><%= link_to "Did It", complete_project_task_path(@project,task), method: :put %></td>
+
+	</tr>
+<%end%>
+</table>
+
+
+
+<h3>Completed Tasks</h3>
+<table>
+<% @project.tasks.where(status: true).each do |task|%>
+	<tr>
+		<td><%=task.name%></td>
+		<td><%= link_to "ReDo", reverse_status_project_task_path(@project,task), method: :put %></td>
+
+	</tr>
+<%end%>
+
+</table>
+
+<p><%= link_to "Back", projects_path%></p>
+
+
+
+

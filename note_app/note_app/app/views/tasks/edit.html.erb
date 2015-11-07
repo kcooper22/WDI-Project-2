@@ -1,0 +1,19 @@
+<h3>Edit Task</h3>
+
+
+<form action="/projects/<%=@project.id%>/tasks/<%=@task.id%>" method="post">
+	<input type="hidden" name="_method" value="put">
+	<label>Name</label>
+	<input type="text" name="task[name]" value="<%=@task.name%>"></br>
+	<label>Note</label>
+	<input type="text" name="task[description]" value="<%=@task.description%>"></br>
+
+
+	<input type="submit" value="Submit">
+
+</form><br>
+
+<p><%= link_to "Delete Task", project_task_path(@project, @task), :method=>:delete %></p>
+
+<p><%= link_to "Back", project_path(@project)%></p>
+

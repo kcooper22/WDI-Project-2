@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
 	def index
 		@user =  current_user
+
 	end
 
 	def show
@@ -24,11 +25,48 @@ class ProjectsController < ApplicationController
     redirect_to '/'
 	end
 
-	def add_user
+	def edit
+		@project = Project.find(params[:id])
+	end
+
+	def update
+		@project = Project.find(params[:id])
+    @project.update_attributes(project_params)
+    redirect_to project_path(@project.id)
+	end
+
+	def destroy
+		@project = Project.find(params[:id])
+		@project.destroy
+		redirect_to projects_path
+	end
+
+	# def add_user
+	# 	project = Project.find(params[:id])
+	# 	newuser = User.where('user_name' = )
+
+	# end
+
+	def complete
 		project = Project.find(params[:id])
-		newuser = User.where('user_name' = )
+
+
+    project.update_attribute(:status, true)
+    
+
+    redirect_to root_path
 
 	end
+
+		def reverse_status
+		project = Project.find(params[:id])
+
+    project.update_attribute(:status, false)
+
+    redirect_to root_path
+
+	end
+
 
 
 	private
