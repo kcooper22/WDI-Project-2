@@ -1,18 +1,32 @@
-<div>Hi <%=@user.fname %>!</div>
+<div class="row">
+	<div class="six columns">Hi <%=@user.fname %>!</div>
+</div>
+</br>
+
+<%= link_to "Create New Project", new_project_path %>
 
 <h3>Active Projects</h3>
 
 <table>
+	<thread>
+		<tr>
+			<th> </th>
+			<th>Project Name</th>
+			<th>Description</th>
+			<th> </th>
+		</tr>
+	</thread>
+	<tbody>
 <% @user.projects.where(status: false).each do |proj| %>
 	<tr>
+		<td><%= button_to "DidIt", complete_project_path(proj), method: :put, class: "button-primary" %></td>
 		<td><%= proj.name %></td>
+		<td><%= proj.description %></td>
 		<td><%= link_to "View", project_path(proj.id) %></td>
-		<td><%= link_to "Did It", complete_project_path(proj), method: :put %></td>
 		
-		<!-- <td><form action="/projects/<%= proj.id %>/complete" method="post">
-			<input type="hidden" name="_method" value="put">
-			<input type="submit" value="DidIt"></td> -->
+	
 	</tr>
+	</tbody>
 <%end%>
 </table>
 
@@ -21,14 +35,12 @@
 <table>
 <% @user.projects.where(status: true).each do |proj| %>
 	<tr>
+		<td><%= button_to "ReDo", reverse_status_project_path(proj), method: :put %></td>
 	<td><%= proj.name %></td>
 	<td><%= link_to "View", project_path(proj.id) %></td>
-	<td><%= link_to "ReDo", reverse_status_project_path(proj), method: :put %></td>
-	<!-- <td><form action="/projects/<%= proj.id %>/complete" method="post">
-			<input type="hidden" name="_method" value="put">
-			<input type="submit" value="ReDo"></td> -->
+	
+	
 	</tr>
 <%end%>
 </table>
 
-<%= link_to "Create New Project", new_project_path %>

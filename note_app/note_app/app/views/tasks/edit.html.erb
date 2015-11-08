@@ -3,9 +3,9 @@
 
 <form action="/projects/<%=@project.id%>/tasks/<%=@task.id%>" method="post">
 	<input type="hidden" name="_method" value="put">
-	<label>Name</label>
+	<label>Name: </label>
 	<input type="text" name="task[name]" value="<%=@task.name%>"></br>
-	<label>Note</label>
+	<label>Note: </label>
 	<input type="text" name="task[description]" value="<%=@task.description%>"></br>
 
 

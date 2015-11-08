@@ -1,6 +1,6 @@
 <h1><%= @project.name%></h1>
 
-<%= link_to "Edit Project", edit_project_path(@project.id) %>
+<p><%= link_to "Edit Project", edit_project_path(@project.id) %></p>
 
 
 <%= link_to "Add A New Task", new_project_task_path(@project.id) %>
@@ -11,15 +11,27 @@
 <h3>Active Tasks</h3>
 
 <table>
+	<thread>
+		<tr>
+			<th> </th>
+			<th>Task Name</th>
+			<th>Note</th>
+			<th> </th>
+		</tr>
+	</thread>
+	<tbody>
 <% @project.tasks.where(status: false).each do |task|%>
 	<tr>
+		<td><%= button_to "DidIt", complete_project_task_path(@project,task), method: :put, class: "button-primary" %></td>
 		<td><%=task.name%></td>
+		<td><%=task.description%></td>
 		<td><%= link_to "Edit", edit_project_task_path(@project,task) %></td>
-		<td><%= link_to "Did It", complete_project_task_path(@project,task), method: :put %></td>
-
 	</tr>
+	</tbody>
 <%end%>
 </table>
+
+
 
 
 
@@ -27,8 +39,9 @@
 <table>
 <% @project.tasks.where(status: true).each do |task|%>
 	<tr>
+		<td><%= button_to "ReDo", reverse_status_project_task_path(@project,task), method: :put %></td>
 		<td><%=task.name%></td>
-		<td><%= link_to "ReDo", reverse_status_project_task_path(@project,task), method: :put %></td>
+		
 
 	</tr>
 <%end%>
