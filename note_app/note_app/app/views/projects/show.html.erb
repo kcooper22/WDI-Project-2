@@ -20,7 +20,7 @@
 		</tr>
 	</thread>
 	<tbody>
-<% @project.tasks.where(status: false).each do |task|%>
+	<% @project.tasks.where(status: false).each do |task|%>
 	<tr>
 		<td><%= button_to "DidIt", complete_project_task_path(@project,task), method: :put, class: "button-primary" %></td>
 		<td><%=task.name%></td>

@@ -1,3 +1,8 @@
 body {
 	background-color: #CFFFFF;
 }
+
+#title {
+	background-color: #33C3F0;
+	color: white;
+}
