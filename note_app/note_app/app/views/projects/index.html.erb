@@ -1,7 +1,6 @@
-<div class="row">
-	<div class="six columns">Hi <%=@user.fname %>!</div>
-</div>
-</br>
+
+<h5>Hi <%=@user.fname %>! Let's do some work!</h5>
+
 
 <%= link_to "Create New Project", new_project_path %>
 
@@ -19,7 +18,7 @@
 	<tbody>
 <% @user.projects.where(status: false).each do |proj| %>
 	<tr>
-		<td><%= button_to "DidIt", complete_project_path(proj), method: :put, class: "button-primary" %></td>
+		<td><%= button_to "DidIt", complete_project_path(proj), method: :put, :class => "button-primary lower-pad" %></td>
 		<td><%= proj.name %></td>
 		<td><%= proj.description %></td>
 		<td><%= link_to "View", project_path(proj.id) %></td>

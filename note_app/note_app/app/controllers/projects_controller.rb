@@ -43,11 +43,12 @@ class ProjectsController < ApplicationController
 
 	# def add_user
 	# 	project = Project.find(params[:id])
-	# 	newuser = User.where('user_name' = )
+	# 	newuser_email = User.where('user_name' )
 
 	# end
 
 	def complete
+
 		project = Project.find(params[:id])
 
 
